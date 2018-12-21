@@ -5,8 +5,8 @@ class TaskList extends React.Component {
         return(
             <div className="">
                 <ol>
-                    {this.props.todoTitles.map((todoItem) =>
-                        <li>{todoItem}</li>
+                    {this.props.info.map((item) =>
+                        <li>{item.name},{item.pic},{item.date}</li>
                     )}
                 </ol>
             </div>

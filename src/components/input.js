@@ -1,38 +1,50 @@
 import React from 'react';
 
-// add
+// input
 class Input extends React.Component {
-    handleFormSubmit = (e) => {
-        e.preventDefault()
-        var value = document.getElementById("item").value
-        this.props.addList(value)
-    }
-
- 
-
     render() {
         return(
             <div className="input-box">
-                <p>Add:</p>
-                <form onSubmit={this.handleFormSubmit}>
-                    <input id="item" type="text" />
-                    <input className="add-button" type="submit" value="Add"></input>
-                </form>
-                <DeleteButton deleteList = {this.props.deleteList}/>
-            </div>
-        )
-    }
-}
-// delete
-class DeleteButton extends React.Component {
-    render() {
-        return(
-            <div className="delete-button-box">
-                <input className="delete-button" type="button" value="delete" onClick={this.props.deleteList} />
+                <p>New Tasks:</p>
+                <NameField />
+                <PICField />
+                <DateField />
             </div>
         )
     }
 }
 
+class NameField extends React.Component {
+    render() {
+        return(
+            <div className="grid-box">
+                <p>Name:</p>
+                <input id="name" className="input-common"></input>
+            </div>
+        )
+    }
+}
+
+class PICField extends React.Component {
+    render() {
+        return(
+            <div className="grid-box">
+                <p>PIC:</p>
+                <input id="pic" className="input-common"></input>
+            </div>
+        )
+    }
+}
+
+class DateField extends React.Component {
+    render() {
+        return(
+            <div className="grid-box">
+                <p>Date:</p>
+                <input id="date" className="input-common"></input>
+            </div>
+        )
+    }
+}
 
 export default Input;
