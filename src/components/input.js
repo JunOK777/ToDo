@@ -18,7 +18,7 @@ class Input extends React.Component {
                     <input id="item" type="text" />
                     <input className="add-button" type="submit" value="Add"></input>
                 </form>
-                <DeleteButton test = {this.props.deleteList}/>
+                <DeleteButton deleteList = {this.props.deleteList}/>
             </div>
         )
     }
@@ -28,7 +28,7 @@ class DeleteButton extends React.Component {
     render() {
         return(
             <div className="delete-button-box">
-                <input className="delete-button" type="button" value="delete" onClick={this.props.test} />
+                <input className="delete-button" type="button" value="delete" onClick={this.props.deleteList} />
             </div>
         )
     }
