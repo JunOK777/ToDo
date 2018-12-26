@@ -2,8 +2,6 @@ import React from 'react';
 
 // buttons
 class Button extends React.Component {
-    
-
     render() {
         return(
             <div className="button-box">
@@ -19,12 +17,9 @@ class Button extends React.Component {
 class AddButton extends React.Component {
     handleFormSubmit = (e) => {
         e.preventDefault()
-        
         var name = document.getElementById("name").value
         var pic = document.getElementById("pic").value
         var date = document.getElementById("date").value
-        console.log(name)
-        
         this.props.addList(name, pic, date)
     }
     render() {
