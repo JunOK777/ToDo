@@ -7,8 +7,7 @@ class Input extends React.Component {
             <div className="input-box">
                 <p>New Tasks:</p>
                 <NameField />
-                <PICField />
-                <DateField />
+                <ContentField />
             </div>
         )
     }
@@ -25,23 +24,12 @@ class NameField extends React.Component {
     }
 }
 
-class PICField extends React.Component {
+class ContentField extends React.Component {
     render() {
         return(
             <div className="grid-box">
-                <p>PIC:</p>
-                <input id="pic" className="input-common"></input>
-            </div>
-        )
-    }
-}
-
-class DateField extends React.Component {
-    render() {
-        return(
-            <div className="grid-box">
-                <p>Date:</p>
-                <input id="date" className="input-common"></input>
+                <p>task:</p>
+                <input id="content" className="input-common"></input>
             </div>
         )
     }
