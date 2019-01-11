@@ -108,11 +108,13 @@ class Diary extends Component {
     axios
       .get("http://localhost:8000/api/getAllTasks")
       .then(res=> {
+        console.log(res)
         res.data.forEach(function( value ) {
           let old_info = {
+            id: value.id,
             name: value.task_name,
             content: value.task_body,
-            date: ''
+            like_count: value.like_count
           }
           info.push(old_info)
         })
@@ -131,8 +133,7 @@ class Diary extends Component {
     this.setState({
       info: info
     })
-
-    axios.post('http://localhost:8000/api/getLike', {
+    axios.post('http://localhost:8000/api/saveTask', {
       data: new_info,
     })
   }
