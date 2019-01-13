@@ -1,7 +1,7 @@
 import React, { Component,Fragment } from 'react'
 import './App.css'
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-import Input from './components/input.js'
+import TaskInput from './components/input.js'
 import Button from './components/button.js'
 import TaskList from './components/task.js'
 import axios from 'axios';
@@ -15,7 +15,6 @@ class Login extends Component {
     };
     this.getData = this.getData.bind(this);
   }
-
   getData() {
     axios
       .get('http://localhost:8000/api/test')
@@ -89,6 +88,7 @@ class Login extends Component {
     );
   }
 }
+
 class Diary extends Component {
   state = {
     info: [],
@@ -96,23 +96,12 @@ class Diary extends Component {
   componentWillMount(){
     var info = this.state.info
     axios
-      .get("http://localhost:8000/api/getFavorite")
-      .then(res=> {
-        let data = res.data;
-        if(data === 0){
-          document.getElementById("likeCount").classList.add('action')
-        } else if(data === 1) {
-          document.getElementById("likeCount").classList.remove('action')
-        }
-      })
-    axios
       .get("http://localhost:8000/api/getAllTasks")
       .then(res=> {
         console.log(res)
         res.data.forEach(function( value ) {
           let old_info = {
             id: value.id,
-            name: value.task_name,
             content: value.task_body,
             like_count: value.like_count
           }
@@ -122,19 +111,29 @@ class Diary extends Component {
           info: info
         })
       })
+      console.log(info)
   }
-  handleAddInfo = (name, content) => {
+  handleAddInfo = (content) => {
     var info = this.state.info
     var new_info = {
-      name: name,
-      content: content,
+      content: content
     }
-    info.push(new_info)
-    this.setState({
-      info: info
+    axios
+    .post('http://localhost:8000/api/saveTask', {
+      data: new_info
     })
-    axios.post('http://localhost:8000/api/saveTask', {
-      data: new_info,
+    .then(res=> {
+      let id = res.data.id
+      let like_count = res.data.like_count
+      var new_info = {
+        id: id,
+        content: content,
+        like_count: like_count
+      }
+      info.push(new_info)
+      this.setState({
+        info: info
+      })
     })
   }
   handleDeleteList = () => {
@@ -147,37 +146,16 @@ class Diary extends Component {
     axios
       .get("http://localhost:8000/api/deleteTask")
   }
-  changeClass = () => {
-    let getClass = document.getElementById("likeCount");
-    if(getClass.classList.contains("action")){
-      axios
-        .get("http://localhost:8000/api/removeFavorite")
-        .then(res=> {
-          console.log(res)
-        })
-    } else {
-      axios
-        .get("http://localhost:8000/api/addFavorite")
-        .then(res=> {
-          console.log(res)
-        })
-    }
-    document.getElementById("likeCount").classList.toggle("action")
-  }
   render() {
     return (
       <div className="wrapper">
-        <h1>Diary</h1>
-        <Input />
-        <Button addList={this.handleAddInfo} deleteList={this.handleDeleteList}/>
-        <TaskList info={this.state.info} />
-        <div className="testWrapper">
-          <div>
-            <button className="testButton" onClick = {this.changeClass}><i className="fas fa-heart"></i></button>
-            <p id="likeCount">LIke</p>
-
-          </div>
+        <h1>Task Manager</h1>
+        <div className="input-wrapper">
+          <TaskInput />
+          <Button addList={this.handleAddInfo} deleteList={this.handleDeleteList}/>
         </div>
+        
+        <TaskList info={this.state.info}/>
       </div>
     );
   }

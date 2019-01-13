@@ -1,8 +1,3 @@
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-}
-
 .wrapper {
   text-align: center;
   background-color: #282c34;
@@ -14,27 +9,24 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
-.App-link {
-  color: #61dafb;
+.input-wrapper{
+  padding: 0 10px;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+ol{
+  padding:10px 40px; 
+}  
+li {
+  list-style: none;
+  text-align: left;
+  margin-bottom:10px;
 }
 
 /* ------------------ */
 .button-box {
-  display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
-}
-.add-text {
-  text-align: right;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  text-align: center;
 }
 p {
   font-size: 20px;
@@ -43,28 +35,31 @@ form {
   margin: auto 0;
   text-align: left
 }
-
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+}
 .add-button {
-  /* height: 22px; */
+  font-size: 16px;
   width: 60px;
-  /* margin-top: 27px; */
-  margin-left: 10px;
-}
-.delete-button-box {
-  text-align: center;
-  margin: auto 0;
-}
-.delete-button {
-  width: 60px;
+  margin-right:10px;
   height: 22px;
 }
 .grid-box {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
+.task-box{
+  margin: auto 0;
+  padding-left: 10px;
+  padding-right: 70px;
+
+}
 .input-common {
   height: 22px;
+  width: 280px;
   margin: auto 0;
+  padding: 0 10px;
 }
 .login-signin {
   height: 40px;
@@ -74,10 +69,41 @@ form {
   width: 60px;
   height: 30px;
 }
-.action {
-  color: red;
+.done {
+  text-decoration: line-through;
+  color: gray;
 }
-.like-button {
-  width:40px;
-  height:20px;
+.check-button {
+  width:50px;
+  height:30px;
+  margin: 0 10px 0 0;
+  border-radius: 3px;
+}
+.del-button {
+  float: right;
+  text-align: center;
+  margin-left: 20px;
+  width:50px;
+  height:30px;
+  border-radius: 3px;
+}
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
+.main-task {
+  border: solid 1px;
+  border-radius: 10px;
+  margin: 20px 0;
+}
+.today-task {
+  border: solid 1px;
+  margin: 0 0 10px;
+}
+
+.send-to-slack-button {
+  font-size: 16px;
+  width: 140px;
+  height: 30px;
+  margin-bottom: 20px;
 }
